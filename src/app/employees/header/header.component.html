@@ -1,0 +1,80 @@
+<!-- header -->
+<div class="header my-4 p-4 bg-white shadow-sm rounded-4">
+  <div class="container-fluid">
+    <div class="row g-4">
+      <div class="col-lg-5">
+        <div
+          class="d-flex align-items-center justify-content-lg-start justify-content-sm-center"
+        >
+          <div class="bg-light-secondary-color p-2 rounded-2">
+            <i class="fa-solid fa-user-group text-secondary-color"></i>
+          </div>
+          <div class="mx-2">
+            <h3 class="h6 text-muted">عدد المستخدمون في الوحدة</h3>
+            <span class="fw-bold">{{ numberOfEmployee }} مستحدم</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-7">
+        <div
+          class="d-flex align-items-center justify-content-lg-end justify-content-sm-center"
+        >
+          <div class="filters d-flex align-items-center">
+            <div class="search ms-1">
+              <i
+                class="fa-solid fa-magnifying-glass mx-2 cursor-pointer"
+                (click)="onSearch()"
+              ></i>
+              <input
+                type="text"
+                placeholder="بحث"
+                class=""
+                [(ngModel)]="searchValue"
+                (keyup.enter)="onSearch()"
+              />
+              <span
+                *ngIf="searchValue"
+                (click)="resetSearcgInput()"
+                class="cursor-pointer ms-3"
+              >
+                <i class="fa-solid fa-xmark fs-6"></i>
+              </span>
+
+              <!-- 
+            select option to choice search type
+            <i class="fa-solid fa-sort-down ms-2 me-3"></i>
+              
+            <mat-form-field class="bg-transparent w-75" dir="rtl">
+              <mat-select [(ngModel)]="searchType" (selectionChange)="onSearch()">
+                <mat-option value="name">الاسم</mat-option>
+                <mat-option value="userSerial">مسلسل المستخدم</mat-option>
+                <mat-option value="phoneNumber">رقم الهاتف</mat-option>
+              </mat-select>
+            </mat-form-field>  -->
+            </div>
+
+            <div class="search cursor-pointer" (click)="toggleFilter()">
+              <mat-icon class="mx-2 cursor-pointer">tune</mat-icon>
+              <span>فرز</span>
+              <i class="fa-solid fa-sort-down ms-2 me-3"></i>
+            </div>
+
+            <div class="transition-smoth">
+              <app-filter
+                [class]="isFilterVisible ? 'open' : 'close'"
+                *ngIf="isFilterVisible"
+                (closeFilter)="toggleFilter()"
+                [isFilterVisible]="isFilterVisible"
+                (applyFilter)="onFilterApplied($event)"
+              ></app-filter>
+            </div>
+          </div>
+          <button class="primary">
+            <i class="fa-solid fa-plus icon-plus"></i> إضافة مستخدم
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

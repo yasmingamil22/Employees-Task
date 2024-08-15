@@ -1,0 +1,49 @@
+@import "/src/assets/styles/variables.scss";
+
+
+
+th{
+  font-size: 17px;
+  color: #1f2c5f;
+}
+
+
+/* Hide the default sort arrow */
+::ng-deep .mat-sort-header-arrow {
+  display: none !important;
+}
+
+/* Use a FontAwesome icon for the sort header */
+::ng-deep .mat-sort-header-content::before {
+  content: '\f885'; /* FontAwesome sort icon (e.g., fa-sort) */
+  font-family: 'FontAwesome';
+  display: inline-block;
+  margin-left: 5px;
+  color: $primary-color;
+  font-size: 20px;
+}
+
+ .mat-mdc-table thead,  .mat-mdc-header-row, .mat-mdc-table .mat-mdc-header-cell {
+  background: #2d419013;
+
+}
+
+.table{
+  --bs-table-striped-bg: #2d41900c;
+}
+
+::ng-deep .mdc-checkbox .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background, .mdc-checkbox .mdc-checkbox__native-control:enabled:indeterminate~.mdc-checkbox__background, .mdc-checkbox .mdc-checkbox__native-control[data-indeterminate=true]:enabled~.mdc-checkbox__background {
+  border-color: $primary-color !important;
+  background-color: $primary-color !important;
+}
+
+::ng-deep .mdc-checkbox:hover .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background, .mdc-checkbox:hover .mdc-checkbox__native-control:enabled:indeterminate~.mdc-checkbox__background, .mdc-checkbox:hover .mdc-checkbox__native-control[data-indeterminate=true]:enabled~.mdc-checkbox__background {
+  border-color: $primary-color !important;
+  background-color: $primary-color !important;
+}
+
+table{
+  --mdc-checkbox-selected-icon-color: #2D4190 !important;
+  --mdc-checkbox-selected-focus-icon-color: #2D4190 !important;
+  --mdc-checkbox-selected-hover-icon-color: #2D4190 !important;
+}

@@ -1,0 +1,50 @@
+<div class="filter-container d-flex justify-content-end">
+  <div class="content pt-4 px-3 d-flex flex-column justify-content-between">
+    <div>
+      <form [formGroup]="filterForm">
+        <h2 class="text-primary-color">فرز</h2>
+
+        <mat-form-field class="w-100 mt-4" dir="rtl">
+          <mat-label>الوظيفة</mat-label>
+          <mat-select multiple formControlName="job">
+            <mat-option
+              *ngFor="let option of configFilter.job"
+              [value]="option.name"
+            >
+              {{ option.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="w-100 mt-3" dir="rtl">
+          <mat-label>الحالة</mat-label>
+          <mat-select multiple formControlName="condition">
+            <mat-option
+              *ngFor="let option of configFilter.condition"
+              [value]="option.name"
+            >
+              {{ option.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="w-100 mt-3" dir="rtl">
+          <mat-label>صلاحية المستخدم</mat-label>
+          <mat-select multiple formControlName="access">
+            <mat-option
+              *ngFor="let option of configFilter.access"
+              [value]="option.name"
+            >
+              {{ option.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </form>
+    </div>
+
+    <div class="mb-5 mx-2 d-flex justify-content-between">
+      <button class="primary" (click)="filter()">فرز</button>
+      <button (click)="cancel()">الغاء</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+@import '/src/assets/styles/variables.scss';
+.filter-container{
+    transition: all 1s ease-in-out;
+
+    width: 100%; 
+    background-color: rgba(0, 0, 0, 0.423); 
+    min-height: 100vh; 
+    position: fixed; 
+    top: 0;
+    left: 0;
+    z-index: 1000; 
+
+    .content{
+        width: 22rem; 
+        background-color: white; 
+    
+    }
+
+  }
+
+
+  
