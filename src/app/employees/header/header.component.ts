@@ -22,6 +22,8 @@ export class HeaderComponent implements OnInit {
 
   employees: IEmployee[] = [];
   filteredEmployees: IEmployee[] = [];
+  searchEmployees: IEmployee[] = [];
+
 
   constructor(private _EmployeeService: EmployeeService,private route: ActivatedRoute,
     private router: Router
@@ -94,14 +96,14 @@ export class HeaderComponent implements OnInit {
       console.log(this.filteredEmployees)
 
     const term = this.searchValue.toLowerCase();
-    this.filteredEmployees = this.employees.filter(
+    this.searchEmployees = this.filteredEmployees.filter(
       (employee) =>
         employee.name.toLowerCase().includes(term) ||
         employee.phoneNumber.includes(term) ||
         employee.userSerial.includes(term)
     );
     console.log(this.filteredEmployees)
-    this.filterChange.emit(this.filteredEmployees); // Emit the filtered data
+    this.filterChange.emit(this.searchEmployees); 
 
   }
 

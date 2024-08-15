@@ -1,5 +1,5 @@
 import { IFilterEmployee } from './../../models/IFilterEmployee';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Observable } from 'rxjs';
@@ -10,6 +10,25 @@ import { ActivatedRoute, Router } from '@angular/router';
   selector: 'app-filter',
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.scss'],
+  animations: [
+    trigger('fadeAnimation', [
+      state(
+        'open',
+        style({
+          opacity: 1,
+          visibility: 'visible', // Ensures the component is shown when fully visible
+        })
+      ),
+      state(
+        'close',
+        style({
+          opacity: 0,
+          visibility: 'hidden', // Hides the component after the animation is complete
+        })
+      ),
+      transition('open <=> close', [animate('0.5s ease-in-out')]),
+    ]),
+  ],
   
 })
 export class FilterComponent {
@@ -29,7 +48,9 @@ export class FilterComponent {
 
   constructor(private fb: FormBuilder, private _filterService: FilterService,
     private _Router:Router,
-        private _ActivatedRoute: ActivatedRoute  ) {
+        private _ActivatedRoute: ActivatedRoute ,
+        private elementRef: ElementRef
+      ) {
     this.filterForm = this.fb.group({
       job: new FormControl([]),
       condition: new FormControl([]),
@@ -59,11 +80,26 @@ export class FilterComponent {
     )
   }
 
+
   cancel() {
     this._Router.navigate(['/employees'])
     this.closeFilter.emit();
   }
+  onContainerClick(event: MouseEvent): void {
+    this.closeFilter.emit();
+  }
+  
 
+  /*
+  @HostListener('document:click', ['$event'])
+  onClick(event: MouseEvent): void {
+    // Close filter if clicked outside the content div
+    const clickedInside = this.elementRef.nativeElement.querySelector('.content').contains(event.target as Node);
+    if (!clickedInside) {
+      this.closeFilter.emit();
+    }
+  }
+*/
   toggleVisibility() {
     this.isFilterVisible = !this.isFilterVisible;
   }
@@ -73,5 +109,10 @@ export class FilterComponent {
     this.applyFilter.emit(this.filterForm.value);  
 
   }
+  get animationState() {
+    return this.isFilterVisible ? 'open' : 'close';
+  }
+
+ 
 
 }

@@ -75,6 +75,7 @@ export class EmployeesComponent implements OnInit {
 
   onFilterChange(filteredEmployees: IEmployee[]): void {
     this.sortedEmployees = filteredEmployees;
+    this.employees=filteredEmployees;
     this.dataSource.data = this.sortedEmployees; 
   }
   

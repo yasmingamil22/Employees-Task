@@ -1,5 +1,11 @@
-<div class="filter-container d-flex justify-content-end">
-  <div class="content pt-4 px-3 d-flex flex-column justify-content-between">
+<div class="filter-container d-flex justify-content-end" 
+  (click)="onContainerClick($event)" 
+  [@fadeAnimation]="animationState"
+  
+>
+  <div class="content pt-4 px-3 d-flex flex-column justify-content-between"
+   (click)="$event.stopPropagation()" 
+   >
     <div>
       <form [formGroup]="filterForm">
         <h2 class="text-primary-color">فرز</h2>
