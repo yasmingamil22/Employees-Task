@@ -16,66 +16,71 @@
         </div>
       </div>
 
-      <div class="col-lg-7  ">
-        <div
-          class="d-flex align-items-center justify-content-lg-end justify-content-sm-center mt-lg-4"
-        >
-          <div class="filters d-flex align-items-center">
-            <div class="search ms-1">
-              <i
-                class="fa-solid fa-magnifying-glass mx-2 cursor-pointer"
-                (click)="onSearch()"
-              ></i>
-              <input
-                type="text"
-                placeholder="بحث"
-                class=""
-                [(ngModel)]="searchValue"
-                (keyup.enter)="onSearch()"
-              />
-              <span
-                *ngIf="searchValue"
-                (click)="resetSearcgInput()"
-                class="cursor-pointer ms-3"
-              >
-                <i class="fa-solid fa-xmark fs-6"></i>
-              </span>
+      <div class="col-lg-7  d-flex align-items-center justify-content-lg-end justify-content-sm-center mt-lg-4">
 
-              <!-- 
-            select option to choice search type
-            <i class="fa-solid fa-sort-down ms-2 me-3"></i>
-              
-            <mat-form-field class="bg-transparent w-75" dir="rtl">
-              <mat-select [(ngModel)]="searchType" (selectionChange)="onSearch()">
-                <mat-option value="name">الاسم</mat-option>
-                <mat-option value="userSerial">مسلسل المستخدم</mat-option>
-                <mat-option value="phoneNumber">رقم الهاتف</mat-option>
-              </mat-select>
-            </mat-form-field>  -->
-            </div>
-
-            <div class="search cursor-pointer" (click)="toggleFilter()">
-              <mat-icon class="mx-2 cursor-pointer">tune</mat-icon>
-              <span>فرز</span>
+        <div class="row g-4 ">
+          <div class="col-md-6  d-flex justify-content-center align-items-center">
+            <div class="filters d-flex align-items-center">
+              <div class="search ms-1">
+                <i
+                  class="fa-solid fa-magnifying-glass mx-2 cursor-pointer"
+                  (click)="onSearch()"
+                ></i>
+                <input
+                  type="text"
+                  placeholder="بحث"
+                  class=""
+                  [(ngModel)]="searchValue"
+                  (keyup.enter)="onSearch()"
+                />
+                <span
+                  *ngIf="searchValue"
+                  (click)="resetSearcgInput()"
+                  class="cursor-pointer ms-3"
+                >
+                  <i class="fa-solid fa-xmark fs-6"></i>
+                </span>
+  
+                <!-- 
+              select option to choice search type
               <i class="fa-solid fa-sort-down ms-2 me-3"></i>
+                
+              <mat-form-field class="bg-transparent w-75" dir="rtl">
+                <mat-select [(ngModel)]="searchType" (selectionChange)="onSearch()">
+                  <mat-option value="name">الاسم</mat-option>
+                  <mat-option value="userSerial">مسلسل المستخدم</mat-option>
+                  <mat-option value="phoneNumber">رقم الهاتف</mat-option>
+                </mat-select>
+              </mat-form-field>  -->
+              </div>
+  
+              <div class="search cursor-pointer" (click)="toggleFilter()">
+                <mat-icon class="mx-2 cursor-pointer">tune</mat-icon>
+                <span>فرز</span>
+                <i class="fa-solid fa-sort-down ms-2 me-3"></i>
+              </div>
+  
+                <app-filter
+                  [hidden]="!isFilterVisible"
+                  (closeFilter)="toggleFilter()"
+                  [isFilterVisible]="isFilterVisible"
+                  (applyFilter)="onFilterApplied($event)"
+                ></app-filter>
+              
+  
+  
             </div>
-
-              <app-filter
-                [hidden]="!isFilterVisible"
-                (closeFilter)="toggleFilter()"
-                [isFilterVisible]="isFilterVisible"
-                (applyFilter)="onFilterApplied($event)"
-              ></app-filter>
-            
-
 
           </div>
+          <div class="col-md-6 d-flex justify-content-center align-items-center">
 
-
-          <button class="primary">
-            <i class="fa-solid fa-plus icon-plus"></i> إضافة مستخدم
-          </button>
+            <button class="primary ms-4">
+              <i class="fa-solid fa-plus icon-plus"></i> إضافة مستخدم
+            </button>
+            
+          </div>
         </div>
+      
       </div>
     </div>
   </div>
